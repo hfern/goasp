@@ -33,3 +33,25 @@ type pobject struct {
 	token otype
 	value interface{}
 }
+
+var otype_names = map[otype]string{
+	tUINT:             "tUINT",
+	tBOOL_ARRAY:       "tBOOL_ARRAY",
+	tSTRING:           "tSTRING",
+	tRGBA:             "tRGBA",
+	tSTR_NULLTERM:     "tSTR_NULLTERM",
+	tPAIR:             "tPAIR",
+	tTRIPLET:          "tTRIPLET",
+	tSTRING_ARRAY:     "tSTRING_ARRAY",
+	tOBJECT_CONTAINER: "tOBJECT_CONTAINER",
+	tCONTROL_STATE:    "tCONTROL_STATE",
+	tUNIT:             "tUNIT",
+	tSTRING2:          "tSTRING2",
+	tSTRING_REF:       "tSTRING_REF",
+	tUID:              "tUID",
+	tEMPTY:            "tEMPTY",
+	tSTRING_EMPTY:     "tSTRING_EMPTY",
+	tNUM0:             "tNUM0",
+	tTRUE:             "tTRUE",
+	tFALSE:            "tFALSE",
+}
