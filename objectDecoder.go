@@ -5,24 +5,19 @@ import (
 )
 
 var (
-	UnknownPrefix = errors.New("Unknown Value ID Type")
 	LacksPreamble = errors.New("Source lacks viewstate preamble")
 )
 
 // decode_full attempts to decode the binary-serialized
 // viewstate code. Checks for preamble.
 func decode_full(st *parser) (node pobject, err error) {
-	preamble_bytes, err := st.b.Peek(2)
+	preamble, err := st.b.Peek(2)
 
 	if err != nil {
 		return pobject{}, err
 	}
 
-	preamble := uint16(preamble_bytes[0])
-	preamble = (preamble << 8) & 0xF0
-	preamble = preamble & uint16(preamble_bytes[1])
-
-	if preamble != view_state_preamble {
+	if string(preamble) != string(view_state_preamble) {
 		return pobject{}, LacksPreamble
 	}
 
@@ -48,7 +43,7 @@ func decode_obj(st *parser) (node pobject, err error) {
 	var ok bool
 
 	if handler, ok = decoders[tok]; !ok {
-		err = UnknownPrefix
+		err = UnknownObjectIdError{token: tok}
 		return
 	}
 

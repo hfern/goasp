@@ -4,7 +4,7 @@ package goasp
 
 type otype byte
 
-const view_state_preamble uint16 = 0xff01
+var view_state_preamble = []byte{0xff, 0x01}
 
 const (
 	tUINT             otype = 0x02
