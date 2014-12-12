@@ -42,5 +42,8 @@ func TestDecode_str_nullterm(t *testing.T) {
 }
 
 func TestDecode_length_string(t *testing.T) {
-
+	assertDecodedString(t, "\x05\x0CHello World!", "Hello World!", tSTRING)
+	assertDecodedString(t, "\x1E\x0CHello World!", "Hello World!", tSTRING2)
+	assertDecodedString(t, "\x05\x00", "", tSTRING)
+	assertDecodedString(t, "\x05\x01\x07", "\x07", tSTRING)
 }
