@@ -12,16 +12,7 @@ func assertDecodedString(t *testing.T, encoded, expected string, token otype) {
 		t.Fatal(err)
 	}
 
-	if obj.token != token {
-		gotTokenName, _ := otype_names[obj.token]
-		t.Fatalf(
-			"Expected %v (0x%02x), got %v (0x%02x)",
-			otype_names[token],
-			token,
-			gotTokenName,
-			obj.token,
-		)
-	}
+	assertTokenIs(t, obj, token)
 
 	var val string
 	var ok bool
