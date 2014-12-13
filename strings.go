@@ -1,14 +1,14 @@
 package goasp
 
 func parse_length_string(p *parser, obj pobject) (pobject, error) {
-	length, err := p.b.ReadByte()
+	length, err := decode_uinteger_val(p)
 	if err != nil {
 		return obj, err
 	}
 
 	strbuf := make([]byte, length)
 
-	for i := byte(0); i < length; i++ {
+	for i := uint(0); i < length; i++ {
 		strbuf[i], err = p.b.ReadByte()
 		if err != nil {
 			return pobject{}, err

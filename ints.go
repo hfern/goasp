@@ -6,7 +6,7 @@ import (
 
 var MissingFirstByte = errors.New("Missing first byte following object type ID.")
 
-func parse_uinteger(p *parser, obj pobject) (pobject, error) {
+func decode_uinteger_val(p *parser) (uint, error) {
 	val := uint(0)
 
 	shift := uint(0)
@@ -23,7 +23,16 @@ func parse_uinteger(p *parser, obj pobject) (pobject, error) {
 	}
 
 	if err != nil {
-		return pobject{}, err
+		return 0, err
+	}
+
+	return val, nil
+}
+
+func parse_uinteger(p *parser, obj pobject) (pobject, error) {
+	val, err := decode_uinteger_val(p)
+	if err != nil {
+		return obj, err
 	}
 
 	obj.value = val
