@@ -4,7 +4,16 @@ import (
 	"fmt"
 )
 
+type ParseError struct {
+	message string
+}
+
+func (err ParseError) Error() string {
+	return err.message
+}
+
 type UnknownObjectIdError struct {
+	ParseError
 	token otype
 }
 

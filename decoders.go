@@ -6,5 +6,6 @@ var decoders map[otype]decoder_cb = map[otype]decoder_cb{
 	tSTRING:       parse_length_string,
 	tSTRING2:      parse_length_string,
 	tSTR_NULLTERM: parse_str_nullterm,
+	tSTRING_ARRAY: parse_str_array,
 	tUINT:         parse_uinteger,
 }
